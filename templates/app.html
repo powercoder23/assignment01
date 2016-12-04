@@ -73,10 +73,12 @@
 			</div>
 			<div>
 				<ul  class="result-ul">
-					<li ng-repeat="flight in searchResult">
+					<li class="col-md-12" ng-repeat="flight in searchResult">
 						
 						<div class="col-md-9">
-							<div class="col-md-12">Rs. {{getFlightRate(flight)}}</div>
+							<div class="row">
+								<div class="col-md-12">Rs. {{getFlightRate(flight)}}</div>
+							</div>
 
 							<div class="row">
 								<div class="col-md-6">
