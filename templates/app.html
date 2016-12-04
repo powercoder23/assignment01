@@ -1,0 +1,127 @@
+<div class="container-fluid">
+	<header>
+		<h1>Flight Search Engine</h1>
+	</header>
+	<div class="row content">
+		<aside class="col-md-3">
+			<div class="filters" ng-controller="SearchCtrl">
+				<ul class="nav nav-tabs">
+				  <li ng-click="search.oneWay=true" ng-class="{active:search.oneWay}"><a href="javascript:void(0)">One way</a></li>
+				  <li ng-click="search.oneWay=false" ng-class="{active:!search.oneWay}"><a href="javascript:void(0)">Round Trip</a></li>
+				</ul>
+				<div class="filters-fields">
+					<fieldset>
+					    <label class="col-md-4">
+					    	From
+					    </label>
+					    <div class="col-md-8">
+					    	<input class="form-control" type="text" ng-model="search.origin" placeholder="Enter Origin City">	
+					    </div>
+					</fieldset>
+
+					<fieldset>
+					    <label class="col-md-4">
+					    	To
+					    </label>
+						<div class="col-md-8">
+							<input class="form-control" type="text" ng-model="search.destination" placeholder="Enter Destination City">
+						</div>
+					</fieldset>
+					    
+					<fieldset>
+					    <label class="col-md-4">
+					    	Start Date
+					    </label>
+					    <div class="col-md-8">
+					    	<input class="form-control" type="date"  ng-model="search.startDate" name="">
+					    </div>
+					</fieldset>
+
+					<fieldset ng-if="!search.oneWay">
+					    <label class="col-md-4">
+					    	End Date
+					    </label>
+					    <div class="col-md-8">
+					    	<input class="form-control" type="date" ng-model="search.endDate" name="">
+					    </div>
+					</fieldset>
+
+					<fieldset>
+					    <label class="col-md-4">
+					    	Passengers
+					    </label>
+					    <div class="col-md-8">
+					    	<select class="form-control"  ng-model="search.passengers">
+						    	<option selected value="1">Passengers</option>
+						    	<option value="1">1</option>
+						    	<option value="2">2</option>
+						    	<option value="3">3</option>
+						    	<option value="4">4</option>
+						    	<option value="5">5</option>
+						    </select>
+					    </div>
+					</fieldset>
+					
+					<button ng-click="searchFlights()" class="btn btn-primary">Search</button>
+					  
+				</div>
+			</div>
+		</aside>
+		<section class="col-md-9" ng-controller="ResultCtrl">
+			<div>
+				<h2>{{searchHeadingText | uppercase}}</h2>
+			</div>
+			<div>
+				<ul  class="result-ul">
+					<li ng-repeat="flight in searchResult">
+						
+						<div class="col-md-9">
+							<div class="col-md-12">Rs. {{getFlightRate(flight)}}</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									{{flight.oneWay.flightCode}}
+								</div>
+								<div class="col-md-6">
+									{{flight.return.flightCode}}
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									{{searchParams.origin | uppercase}} > {{searchParams.destination | uppercase}}
+								</div>
+								<div class="col-md-6">
+									<span ng-if="flight.return">{{searchParams.destination | uppercase}} > {{searchParams.origin | uppercase}}</span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									Depart : {{flight.oneWay.departureTime}}
+								</div>
+								<div class="col-md-6">
+									<span ng-if="flight.return">Depart : {{flight.return.departureTime}} </span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									Arrive : {{flight.oneWay.arrivalTime}}
+								</div>
+								<div class="col-md-6">
+									<span ng-if="flight.return">Arrive : {{flight.return.arrivalTime}}</span>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-3">
+							<button class="btn btn-success">Book this Flight</button>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+</div>

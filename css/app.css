@@ -1,0 +1,63 @@
+html{
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+}
+
+.app{
+	height: 100%;
+}
+
+body div{
+	margin: 0 auto;
+}
+
+.container{
+	height: 100%;
+}
+
+.content{
+	height: 100%;
+}
+
+header{
+	height: 100px;
+	background-color: #00f0f0;
+	margin-bottom: 10px;
+}
+
+header > h1{
+	margin: 0;	
+}
+
+.aside{
+	width: 30%;
+	float: left;
+	height: 100%;
+	border: 1px solid #000;
+	box-sizing: border-box;
+}
+
+
+section{
+	width: 70%;
+	float: left;
+	box-sizing: border-box;
+}
+
+
+.result-ul {
+	padding: 0;
+	margin: 0;
+}
+
+.result-ul li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	border: 1px solid #3d3d3d;
+	min-height: 100px;
+}
